@@ -8,25 +8,22 @@ class Solution(object):
         
 #         l=0
 #         r=len(nums)-1
-#         tarI=0
         
-#         while l< r:
-#             mid=(1+r)/2
+        
+#         while l<= r:
+#             mid=(1+r)//2
             
-#             if nums[mid] > target:
-#                 r=mid-1
-                
-                
-#             elif nums[mid] < target:
-                
-#                 l=mid+1
-#                 tarI=l+1
-                
-#             else:
+#             if nums[mid]==target:
 #                 return mid
             
+#             elif nums[mid] < target:
+#                 l=mid+1
+                
+#             else:
+#                 r=mid-1
+                
+#         return l
             
-#         return tarI
         n = len(nums)
         l = 0
         r = n - 1
