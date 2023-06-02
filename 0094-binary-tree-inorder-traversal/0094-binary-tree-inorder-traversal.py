@@ -11,15 +11,21 @@ class Solution(object):
         :rtype: List[int]
         """
         
-        def dfs(root):
-            if not root:
-                return
-            dfs(root.left)
-            res.append(root.val)
-            dfs(root.right)
-            
         res=[]
-        dfs(root)
+        
+        stack=[]
+        
+        cur=root
+        
+        while cur or stack:
+            
+            
+            while cur:
+                
+                stack.append(cur)
+                cur=cur.left
+            
+            cur=stack.pop()
+            res.append(cur.val)
+            cur=cur.right
         return res
-        
-        
