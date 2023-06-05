@@ -14,9 +14,6 @@ class Solution(object):
         while stack:
             
             keys=stack.pop()
-            
-            
-            
             for key in keys:
                 
                 if key not in visited:
