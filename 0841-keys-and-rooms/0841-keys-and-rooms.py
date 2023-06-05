@@ -12,9 +12,9 @@ class Solution(object):
         
         
         while stack:
-            print(stack)    
+            
             keys=stack.pop()
-            print(keys)
+            
             
             
             for key in keys:
