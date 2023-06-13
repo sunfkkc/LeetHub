@@ -37,7 +37,6 @@ class Solution(object):
         for i in range(len(s1)):
             union(s1[i],s2[i])
             
-        print(d)
             
         res=''
         
