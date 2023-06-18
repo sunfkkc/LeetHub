@@ -5,19 +5,17 @@ class Solution(object):
         :type target: int
         :rtype: int
         """
+        
         dp={}
         
         def bt(i,t):
-            
             if i==len(nums):
-                
                 return 1 if t == target else 0
             
             if (i,t) in dp:
                 return dp[(i,t)]
             
-            
-            dp[(i,t)]=bt(i+1,t+nums[i]) + bt(i+1, t-nums[i])
+            dp[(i,t)] = bt(i+1,t+nums[i]) + bt(i+1,t-nums[i])
             
             return dp[(i,t)]
         
