@@ -6,16 +6,35 @@ class Solution(object):
         :type x: int
         :rtype: List[int]
         """
-        l,r=0,len(arr)-k 
-            
+        
+        if x<=arr[0] : return arr[:k]
+        if arr[-1]<=x : return arr[-k:]
+        l=0
+        r=len(arr)-1
+        
         while l<r:
             
-            m=(l+r)//2
+            mid=(l+r)//2
             
-            if x-arr[m] > arr[m+k] -x:
-                l=m+1
+            if arr[mid]<=x<arr[mid+1]:
+                break
+            elif x<arr[mid]:
+                r=mid
             else:
-                r=m
-        return arr[l:l+k]
+                l=mid
+                
+        def cal(a,b,x):
+            if b==len(arr): return True
+            return abs(arr[a]-x)<=abs(arr[b]-x)
+        
+        c=0
+        a=mid
+        b=mid+1
+        while c<k:
+            if cal(a,b,x):
+                a-=1
+            else:
+                b+=1
+            c+=1
             
-            
+        return [arr[i] for i in range(a+1,b)]
