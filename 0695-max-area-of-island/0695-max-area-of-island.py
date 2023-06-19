@@ -32,7 +32,6 @@ class Solution(object):
                     grid[r][c + 1] = 0
                     q.append((r,c+1))
             
-            print(i,j,area)
             return area
         
         res=0
