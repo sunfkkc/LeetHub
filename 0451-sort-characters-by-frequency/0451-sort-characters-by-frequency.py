@@ -10,12 +10,15 @@ class Solution(object):
             d[i]+=1
             
         
+        arr=[]
         
-        d = sorted(d.items(), key=lambda x: x[1], reverse=True)
-        
+        heapq.heapify(arr)
+        for key in d:
+            heapq.heappush(arr,[-d[key],key])
+            
         res=''
-        for i in d:
-            for j in range(i[1]):
-                res+=i[0]
         
+        while arr:
+            v,c=heapq.heappop(arr)
+            res+=c*-v
         return res
