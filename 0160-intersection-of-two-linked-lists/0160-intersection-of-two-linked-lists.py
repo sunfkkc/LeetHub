@@ -11,9 +11,28 @@ class Solution(object):
         :rtype: ListNode
         """
         
-        l1,l2=headA,headB
+        cA,cB = 0,0
         
-        while l1 != l2:
-            l1 = l1.next if l1 else headB
-            l2 = l2.next if l2 else headA
-        return l1
+        pA,pB = headA,headB
+        
+        while pA:
+            pA = pA.next
+            cA+=1
+            
+        while pB:
+            pB=pB.next
+            cB+=1
+        pA,pB = headA,headB
+        if cA>cB:
+            while cA != cB:
+                pA=pA.next
+                cA-=1
+        else:
+            while cB != cA:
+                pB=pB.next
+                cB-=1
+        
+        while pA != pB:
+            pA=pA.next
+            pB=pB.next
+        return pA
