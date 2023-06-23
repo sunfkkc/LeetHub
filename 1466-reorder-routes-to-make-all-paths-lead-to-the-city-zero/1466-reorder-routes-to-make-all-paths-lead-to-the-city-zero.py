@@ -5,11 +5,7 @@ class Solution(object):
         :type connections: List[List[int]]
         :rtype: int
         """
-        edges=set((a,b) for a,b in connections)
-        
-        visited=set()
-        
-        self.res=0
+        e=set(map(tuple,connections))
         
         adj=defaultdict(list)
         
@@ -17,21 +13,18 @@ class Solution(object):
             adj[a].append(b)
             adj[b].append(a)
             
-        
+        visited=set()
+        self.res=0
         def dfs(city):
             
-            for nei in adj[city]:
+            if city in visited:
+                return
+            visited.add(city)
+            for i in adj[city]:
                 
-                if nei in visited:
-                    continue
+                if (i,city) not in e and i not in visited:
                     
-                if (nei,city) not in edges:
                     self.res+=1
-                
-                visited.add(nei)
-                dfs(nei)
-        visited.add(0)
+                dfs(i)
         dfs(0)
         return self.res
-
-        
