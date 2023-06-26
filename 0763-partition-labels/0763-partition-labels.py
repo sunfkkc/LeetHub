@@ -4,20 +4,25 @@ class Solution(object):
         :type s: str
         :rtype: List[int]
         """
+        
+        ht={}
         res=[]
-        
-        c=s
-        
-        while c:
+        for i,c in enumerate(s):
+            ht[c]=i
             
-            for i,v in enumerate(c):
-                
-                s1=set(c[:i+1])
-                s2=set(c[i+1:])
-                
-                if not s1.intersection(s2):
-                    res.append(i+1)
-                    c=c[i+1:]
-                    break
-                    
+        i=0
+        size=1
+        end=-1
+        while i<len(s):
+            
+            
+            
+            end=max(ht[s[i]],end)
+            
+            if i==end:
+                res.append(size)
+                size=0
+            
+            i+=1
+            size+=1
         return res
