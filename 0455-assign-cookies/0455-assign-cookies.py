@@ -8,7 +8,7 @@ class Solution(object):
         
         res=0
         g.sort()
-        s.sort()
+        s.sort(reverse=True)
         while g and s:
             
             a=g.pop()
