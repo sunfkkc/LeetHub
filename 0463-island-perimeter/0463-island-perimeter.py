@@ -12,7 +12,6 @@ class Solution(object):
             for j in range(len(grid[0])):
                 if grid[i][j]==1:
                     q.append((i,j))
-                    visited.add((i,j))
                     a=True
                     break
             if a:
@@ -21,43 +20,19 @@ class Solution(object):
         while q:
             i,j=q.popleft()
             
-            if i==0:
-                res+=1
-            if i==len(grid)-1:
-                res+=1
-            if j==0:
-                res+=1
-            if j==len(grid[0])-1:
-                res+=1
-                
-            if i>0:
-                if grid[i-1][j]==0:
-                    res+=1
-                
-            if i<len(grid)-1:
-                if grid[i+1][j]==0:
-                    res+=1
-                    
-            if j>0:
-                if grid[i][j-1]==0:
-                    res+=1
-                
-            if j<len(grid[0])-1:
-                if grid[i][j+1]==0:
-                    res+=1
-                    
-            if i>0 and grid[i-1][j]==1 and (i-1,j) not in visited:
-                q.append((i-1,j))
-                visited.add((i-1,j))
-            if i<len(grid)-1 and grid[i+1][j]==1 and (i+1,j) not in visited:
-                q.append((i+1,j))
-                visited.add((i+1,j))
-            if j>0 and grid[i][j-1]==1 and (i,j-1) not in visited:
-                q.append((i,j-1))
-                visited.add((i,j-1))
-            if j<len(grid[0])-1 and grid[i][j+1]==1 and (i,j+1) not in visited:
-                q.append((i,j+1))
-                visited.add((i,j+1))
+            if (i,j) in visited:
+                continue
             
-        return res
+            visited.add((i,j))
             
+            for ni,nj in [[i-1,j],[i+1,j],[i,j-1],[i,j+1]]:
+                if 0<=ni<=len(grid)-1 and 0<=nj<=len(grid[0])-1:
+                    
+                    if grid[ni][nj]==1:
+                        q.append((ni,nj))
+                    else:
+                        res+=1
+                else:
+                    res+=1
+                        
+        return res  
