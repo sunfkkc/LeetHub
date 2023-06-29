@@ -16,19 +16,20 @@ class Solution(object):
             
         visited=set()
         
+        visited.add(source)
         
         def dfs(n):
             if n==destination:
                 return True
             
-            if n not in visited:
-                visited.add(n)
+            for i in adj[n]:
                 
-                for e in adj[n]:
-                    res=dfs(e)
+                if i not in visited:
+                    
+                    visited.add(i)
+                    res=dfs(i)
                     if res:
                         return True
-                
                     
         return dfs(source)
         
