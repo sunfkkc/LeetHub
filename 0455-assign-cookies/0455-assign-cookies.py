@@ -6,16 +6,14 @@ class Solution(object):
         :rtype: int
         """
         
-        res=0
         g.sort()
-        s.sort(reverse=True)
-        while g and s:
+        s.sort()
+        
+        i,j=0,0
+        
+        while i<len(g) and j<len(s):
             
-            a=g.pop()
-            
-            for k in s:
-                if k>=a:
-                    res+=1
-                    s.remove(k)
-                    break
-        return res
+            if s[j] >=g[i]:
+                i+=1
+            j+=1
+        return i
