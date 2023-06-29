@@ -16,17 +16,19 @@ class Solution(object):
             
         visited=set()
         
-        q=deque([source])
-        visited.add(source)
         
-        while q:
-            a=q.popleft()
-            if a==destination:
+        def dfs(n):
+            if n==destination:
                 return True
             
-            for i in adj[a]:
-                if i not in visited:
-                    visited.add(i)
-                    q.append(i)
+            if n not in visited:
+                visited.add(n)
+                
+                for e in adj[n]:
+                    res=dfs(e)
+                    if res:
+                        return True
+                
+                    
+        return dfs(source)
         
-        return False
