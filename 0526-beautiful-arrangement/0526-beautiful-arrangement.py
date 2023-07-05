@@ -14,9 +14,9 @@ class Solution(object):
                 return
             
             for j in range(n):
-                
-                if (j+1) % (i+1) ==0 or (i+1) % (j+1) ==0:
-                    if j not in visited:
+                if j not in visited:
+                    if (j+1) % (i+1) ==0 or (i+1) % (j+1) ==0:
+
                         visited.add(j)
                         bt(i+1)
                         visited.remove(j)
