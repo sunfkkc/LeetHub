@@ -6,27 +6,23 @@ class Solution(object):
         :type k: int
         :rtype: int
         """
-        adj=defaultdict(list)
-
-        for i in times:
-            adj[i[0]].append([i[1],i[2]])
-
-        dist = [float('inf')]*(n+1)
-        dist[k]=0
-        heap=[]
-
-        heapq.heappush(heap,[0,k])
-
-        while heap:
-
-            cost,node = heapq.heappop(heap)
-
-            for no,co in adj[node]:
-                co+=cost
-
-                if co<dist[no]:
-                    dist[no]=co
-                    heapq.heappush(heap,[co,no])
+        t=[0]+[float('inf')]*n
+        
+        graph=defaultdict(list)
+        q=deque([(0,k)])
+        
+        
+        for u,v,w in times:
+            graph[u].append((v,w))
+            
+        while q:
+            
+            time,node = q.popleft()
+            
+            if time<t[node]:
+                t[node]=time
+                
+                for v,w in graph[node]:
+                    q.append((time+w,v))
                     
-        return -1 if max(dist[1:])==float('inf') else max(dist[1:])
-
+        return max(t) if max(t) < float('inf') else -1
