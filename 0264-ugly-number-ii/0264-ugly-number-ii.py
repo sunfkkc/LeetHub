@@ -5,16 +5,22 @@ class Solution(object):
         :type n: int
         :rtype: int
         """
-        h = []
-        ans = []
-        heapq.heappush(h, 1)
-        while len(ans) < n:
-            cur = heapq.heappop(h)
-            if len(ans) > 0 and ans[-1] == cur:
-                continue
-            heapq.heappush(h, cur*2)
-            heapq.heappush(h, cur*3)
-            heapq.heappush(h, cur*5)
-            ans.append(cur)
+        ans=[1]
 
+        i2=0
+        i3=0
+        i5=0
+
+        while len(ans)<n:
+
+            num=min(ans[i2]*2, ans[i3]*3, ans[i5]*5)
+            ans.append(num)
+
+            if num==ans[i2]*2: 
+                i2+=1
+            if num==ans[i3]*3: 
+                i3+=1
+            if num==ans[i5]*5: 
+                i5+=1
+                
         return ans[n-1]
