@@ -4,25 +4,27 @@ class Solution(object):
         :type times: List[List[int]]
         :type n: int
         :type k: int
-        :rtype: int
-        """
-        t=[0]+[float('inf')]*n
+        :rtype: int"""
         
-        graph=defaultdict(list)
+        
+        adj=defaultdict(list)
+        
+        dist=[float('inf')]*(n+1)
+        dist[k]=0
+        
+        for a,b,c in times:
+            adj[a].append((b,c))
+            
         q=deque([(0,k)])
         
-        
-        for u,v,w in times:
-            graph[u].append((v,w))
-            
         while q:
             
-            time,node = q.popleft()
+            c,n=q.popleft()
             
-            if time<t[node]:
-                t[node]=time
+            for node,cost in adj[n]:
                 
-                for v,w in graph[node]:
-                    q.append((time+w,v))
+                if dist[node] > c+cost:
+                    dist[node]=c+cost
+                    q.append((c+cost,node))
                     
-        return max(t) if max(t) < float('inf') else -1
+        return max(dist[1:]) if max(dist[1:]) != float('inf') else -1
