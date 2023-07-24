@@ -3,16 +3,7 @@ class Solution(object):
         """
         :type graph: List[List[int]]
         :rtype: bool
-        """
-#         adj=defaultdict(list)
-#         i=0
-#         for j in graph:
-#             for k in j:
-#                 adj[i].append(k)
-#             i+=1
-            
-        
-        
+        """  
         visited=set()
         
         
