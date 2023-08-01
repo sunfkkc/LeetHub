@@ -5,21 +5,24 @@ class Solution(object):
         :type n: int
         :rtype: int
         """
-        c = Counter(t)
+        c= Counter(t)
         
-        h = [-cnt for cnt in c.values()]
+        h=[-d for d in c.values()]
+        
         heapq.heapify(h)
         
-        time=0
         q=deque()
-        
+        time=0
         while h or q:
-            time +=1
+            time+=1
             
             if h:
-                cnt = 1+heapq.heappop(h)
-                if cnt:
-                    q.append([cnt,time+n])
+                a=heapq.heappop(h)+1
+                if a !=0:
+                    q.append([a,time+n])
+                
             if q and q[0][1]==time:
-                heapq.heappush(h,q.popleft()[0])
+                
+                b=q.popleft()
+                heapq.heappush(h,b[0])
         return time
